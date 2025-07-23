@@ -1,0 +1,61 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Infinitool Scraper | Infinix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+    <header>
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='imagenes/INFINIX LOGO P.png') }}" alt="Logo Infinix" class="dragon-logo">
+        <span class="brand">INFINIX</span>
+    </div>
+    <h1>Infinitool Scraper</h1>
+    <p class="slogan">Pegue la URL, elija el modo y descargue el informe PDF</p>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        <form method="post" class="scraper-form">
+        <label for="web_url">URL del sitio web a analizar:</label>
+        <input type="url" name="web_url" id="web_url" required placeholder="https://ejemplo.com">
+
+        <label for="modo">Modo de scraping:</label>
+        <select name="modo" id="modo">
+            <option value="2" selected>PRO (Selenium: imágenes, fuentes, colores)</option>
+            <option value="1">HTML rápido (solo imágenes sencillas)</option>
+        </select>
+        
+        <button type="submit" class="cta-btn">Generar informe PDF</button>
+        </form>
+
+        <section class="intro">
+        <h2>¿Qué hace el Infinitool Scraper?</h2>
+        <ul class="features">
+            <li>✔ Descarga imágenes (<code>&lt;img&gt;</code> y fondos CSS)</li>
+            <li>✔ Detecta <b>fuentes</b> y <b>colores</b> principales de la web</li>
+            <li>✔ Genera informes PDF automáticos</li>
+            <li>✔ Marca y soporte de <b>Infinix</b></li>
+        </ul>
+        </section>
+        <section class="cta">
+        <h2>¿Descargó su PDF?</h2>
+        <a href="{{ url_for('descargar') }}" class="cta-btn">Descargar último informe</a>
+        </section>
+    </main>
+    <footer>
+        <p>Desarrollado por <strong>Infinix</strong> &copy; 2025 — Soluciones tecnológicas 🐉</p>
+    </footer>
+    </body>
+    </html>
