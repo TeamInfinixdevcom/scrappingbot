@@ -1,0 +1,26 @@
+# Archivos y carpetas de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entorno virtual
+.venv/
+env/
+venv/
+
+# Carpetas temporales/dinámicas del scraper
+imagenes_descargadas/
+reportes/
+chromedriver-win64/
+
+# Archivos y carpetas de editores
+.vscode/
+.idea/
+.DS_Store
+
+# Archivos PDF (informes generados)
+*.pdf
+
+# Archivos de logs
+*.log
