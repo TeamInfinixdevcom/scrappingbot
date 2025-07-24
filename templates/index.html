@@ -1,33 +1,307 @@
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Infinitool Scraper | Infinix</title>
+    <title>INFNITOOL SCRAPER ⚡ | Infinix</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    </head>
-    <body>
-    <header>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #0f2027 70%, #1a1d2c 100%);
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #eaf6fb;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Noise overlay cyber effect */
+        body::before {
+            content: "";
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            opacity: 0.13;
+            background: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+            mix-blend-mode: lighten;
+        }
+        header {
+            padding: 38px 0 18px 0;
+            background: rgba(17,22,34,0.96);
+            border-bottom: 2.5px solid #19ffe6;
+            box-shadow: 0 10px 32px 0 #20fff222, 0 1px 0 0 #0ffffa99 inset;
+            position: relative;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            margin-bottom: 10px;
+        }
+        .dragon-logo {
+            height: 62px;
+            width: 62px;
+            filter: drop-shadow(0 0 14px #00fff7b8) brightness(1.21);
+            border-radius: 22px;
+            background: rgba(24,40,54,0.27);
+            padding: 3px;
+            border: 1.7px solid #36fff3b9;
+        }
+        .brand {
+            font-family: 'Orbitron', Arial, sans-serif;
+            letter-spacing: 3px;
+            font-size: 2.5rem;
+            color: #32fff8;
+            font-weight: 800;
+            text-shadow: 0 3px 28px #00ffeaad, 0 0 2px #fff;
+            text-transform: uppercase;
+        }
+        header h1 {
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-size: 2.4rem;
+            letter-spacing: 1.6px;
+            text-align: center;
+            color: #9bf8f6;
+            margin-bottom: 0.22em;
+            margin-top: 0.08em;
+            text-shadow: 0 0 22px #09ffe999;
+        }
+        .slogan {
+            text-align: center;
+            font-size: 1.13rem;
+            color: #e3feff;
+            opacity: 0.92;
+            margin-bottom: 0.5em;
+            text-shadow: 0 0 5px #16ffe45c;
+            letter-spacing: 1.2px;
+        }
+        main {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 58px;
+            position: relative;
+        }
+        .scraper-form {
+            background: rgba(27, 42, 66, 0.82);
+            border-radius: 28px;
+            border: 2.5px solid #0ff6;
+            box-shadow: 0 3px 34px 0 #11fffd38, 0 0 0 3px #002c38 inset;
+            max-width: 480px;
+            margin: 40px auto 30px auto;
+            padding: 44px 38px 32px 38px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: relative;
+            overflow: visible;
+            backdrop-filter: blur(6px);
+        }
+        /* SVG cyber corners */
+        .scraper-form::after {
+            content: '';
+            position: absolute;
+            left: -13px; top: -13px; right: -13px; bottom: -13px;
+            border-radius: 32px;
+            pointer-events: none;
+            border: 2.7px dashed #3dfff4b8;
+            opacity: 0.28;
+            filter: blur(0.7px);
+        }
+        .scraper-form label {
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+            color: #8cfff9;
+            font-size: 1.14rem;
+            text-shadow: 0 1px 7px #15fff766;
+        }
+        .scraper-form input,
+        .scraper-form select {
+            padding: 13px 17px;
+            border: 2px solid #34ffeec7;
+            border-radius: 13px;
+            font-size: 1.16rem;
+            background: #1c2a44e3;
+            color: #d7fdff;
+            margin-bottom: 8px;
+            outline: none;
+            transition: border .22s, box-shadow .18s;
+            box-shadow: 0 0 12px #1cfff3ad inset;
+            font-family: 'Share Tech Mono', 'Roboto Mono', 'Roboto', Arial, monospace;
+            letter-spacing: 1.3px;
+        }
+        .scraper-form input:focus, .scraper-form select:focus {
+            border-color: #08ffe2;
+            background: #153142ee;
+            box-shadow: 0 0 16px #10fff5ce;
+        }
+        .cta-btn {
+            background: linear-gradient(92deg, #08fff6 16%, #36ffd4 100%);
+            color: #093649;
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-size: 1.14rem;
+            letter-spacing: 1.5px;
+            font-weight: 900;
+            border: none;
+            border-radius: 14px;
+            padding: 15px 0;
+            margin-top: 10px;
+            box-shadow: 0 2px 26px 0 #16fffab6, 0 0 12px #00fffb77 inset;
+            cursor: pointer;
+            transition: background .23s, box-shadow .21s, color .18s;
+            outline: 2px solid #1a1a33;
+            outline-offset: 2px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+        .cta-btn:hover, .cta-btn:focus {
+            background: linear-gradient(90deg, #16efff 30%, #00ffea 100%);
+            box-shadow: 0 6px 44px 0 #1dfff9cc, 0 0 22px #00fff7cc inset;
+            color: #031d29;
+            filter: brightness(1.15) drop-shadow(0 0 18px #12fff9a0);
+        }
+        .cta-btn:active {
+            background: #09cac6;
+        }
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            left: 12%;
+            top: 50%;
+            width: 76%;
+            height: 30%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.19) 0%, rgba(255,255,255,0.06) 100%);
+            filter: blur(7px);
+            opacity: 0.65;
+            pointer-events: none;
+            transform: translateY(-50%) skewX(-17deg);
+            z-index: 1;
+            transition: opacity .3s;
+        }
+        .cta-btn:hover::after {
+            opacity: 0.9;
+        }
+        .flash {
+            background: #181b2bf2;
+            border-left: 4px solid #19fff5;
+            color: #eaf6fb;
+            font-weight: 600;
+            margin: 12px auto 16px auto;
+            max-width: 440px;
+            padding: 13px 22px;
+            border-radius: 15px;
+            box-shadow: 0 2px 18px #14fff32a;
+            text-shadow: 0 1px 4px #15fff24a;
+        }
+        .intro, .cta {
+            background: rgba(26, 44, 76, 0.47);
+            border-radius: 22px;
+            padding: 32px 32px 22px 32px;
+            margin: 14px 0;
+            box-shadow: 0 2.5px 19px 0 #00fff36c;
+            max-width: 700px;
+            text-align: center;
+            backdrop-filter: blur(3.5px);
+            border: 2px solid #15fff27a;
+            position: relative;
+        }
+        .features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0.7em 0;
+        }
+        .features li {
+            padding: 11px 0;
+            font-size: 1.12rem;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            font-family: 'Share Tech Mono', 'Roboto Mono', 'Roboto', Arial, monospace;
+            color: #6bfcff;
+            text-shadow: 0 1px 8px #13fff5aa;
+        }
+        .features li::before {
+            content: '';
+            display: inline-block;
+            width: 15px; height: 15px;
+            background: radial-gradient(circle at 7px 7px, #22fff6 65%, #053d39 90%);
+            border-radius: 50%;
+            margin-right: 9px;
+            box-shadow: 0 0 14px #19ffe9;
+        }
+        .features code {
+            background: #162a38e1;
+            color: #32ffeb;
+            padding: 2.5px 9px;
+            border-radius: 8px;
+            font-size: 1.04rem;
+            box-shadow: 0 1px 7px #15ffe766 inset;
+        }
+        .cta h2 {
+            color: #55f5fe;
+            margin-bottom: 17px;
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-size: 1.32rem;
+            text-shadow: 0 2px 10px #0efcf7cc;
+        }
+        .cta .cta-btn {
+            margin-top: 13px;
+            min-width: 228px;
+        }
+        footer {
+            background: rgba(17,24,38,0.96);
+            color: #9efbf7;
+            text-align: center;
+            padding: 26px 0 17px 0;
+            font-size: 1.16rem;
+            letter-spacing: .33px;
+            border-top: 2.7px solid #0ff9;
+            box-shadow: 0 -3px 28px 0 #19e0f18c;
+            text-shadow: 0 1px 8px #0ff3;
+        }
+        @media (max-width: 700px) {
+            .scraper-form, .intro, .cta {
+                max-width: 99vw;
+                padding: 16px 4vw 13px 4vw;
+            }
+            header h1 { font-size: 1.2rem; }
+            .brand { font-size: 1.34rem; }
+        }
+    </style>
+</head>
+<body>
+<header>
     <div class="logo-container">
         <img src="{{ url_for('static', filename='imagenes/INFINIX LOGO P.png') }}" alt="Logo Infinix" class="dragon-logo">
         <span class="brand">INFINIX</span>
     </div>
     <h1>Infinitool Scraper</h1>
     <p class="slogan">Pegue la URL, elija el modo y descargue el informe PDF</p>
-    </header>
+</header>
 
-    <main>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="flash">
-            {% for msg in messages %}
-                <p>{{ msg }}</p>
-            {% endfor %}
-            </div>
-        {% endif %}
-        {% endwith %}
+<main>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash">
+        {% for msg in messages %}
+            <p>{{ msg }}</p>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
 
-        <form method="post" class="scraper-form">
+    <form method="post" class="scraper-form">
         <label for="web_url">URL del sitio web a analizar:</label>
         <input type="url" name="web_url" id="web_url" required placeholder="https://ejemplo.com">
 
@@ -36,11 +310,10 @@
             <option value="2" selected>PRO (Selenium: imágenes, fuentes, colores)</option>
             <option value="1">HTML rápido (solo imágenes sencillas)</option>
         </select>
-        
         <button type="submit" class="cta-btn">Generar informe PDF</button>
-        </form>
+    </form>
 
-        <section class="intro">
+    <section class="intro">
         <h2>¿Qué hace el Infinitool Scraper?</h2>
         <ul class="features">
             <li>✔ Descarga imágenes (<code>&lt;img&gt;</code> y fondos CSS)</li>
@@ -48,14 +321,14 @@
             <li>✔ Genera informes PDF automáticos</li>
             <li>✔ Marca y soporte de <b>Infinix</b></li>
         </ul>
-        </section>
-        <section class="cta">
+    </section>
+    <section class="cta">
         <h2>¿Descargó su PDF?</h2>
         <a href="{{ url_for('descargar') }}" class="cta-btn">Descargar último informe</a>
-        </section>
-    </main>
-    <footer>
-        <p>Desarrollado por <strong>Infinix</strong> &copy; 2025 — Soluciones tecnológicas 🐉</p>
-    </footer>
-    </body>
-    </html>
+    </section>
+</main>
+<footer>
+    <p>Desarrollado por <strong>Infinix</strong> &copy; 2025 — Soluciones tecnológicas 🐉</p>
+</footer>
+</body>
+</html>
