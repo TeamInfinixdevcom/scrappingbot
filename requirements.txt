@@ -1,0 +1,7 @@
+Flask
+gunicorn
+selenium
+requests
+beautifulsoup4
+Pillow
+fpdf
